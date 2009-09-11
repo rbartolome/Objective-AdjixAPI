@@ -1,0 +1,58 @@
+ADShrinkLink
+************
+Adijx Service API written in Objective-C.
+
+For more informations about Adjix go to 
+- http://adjix.com
+
+
+Informations about the Api 
+- http://web.adjix.com/AdjixAPI.html
+
+
+A nice Article about how to store your links to your Amazon S3 bucket can be found here 
+- http://adjix.com/jrzn
+
+
+
+
+Initialize a ADShinklink Object
+*******************************
+
+ADShrinkLink *sl = [[ADShrinkLink alloc]initWithPartnerEmail:'your email' delegate:...];
+
+- OR - 
+
+ADShrinkLink *sl = [[ADShrinkLink alloc]initWithPartnerID:'your partner id' delegate:...];
+
+
+			   
+Available URL Shortener Methods
+*****************
+
+[sl shrinkLink:@"http://adjix.com"];
+[sl shrinkLink:@"http://adjix.com" adType:ADRandomAdTypeOption];
+[sl shrinkLink:@"http://adjix.com" ultraShort:YES];
+[sl shrinkLink:@"http://adjix.com" adType:ADRandomAdTypeOption ultraShort:YES];
+[sl shrinkLink:@"http://adjix.com" tokenOnly:YES];
+[sl shrinkLink:@"http://adjix.com" adType:ADNoAdTypeOption tokenOnly:YES];
+
+
+
+Delegate Method
+***************
+
+- (void)shrinkLinkResult:(NSString *)shrinkedURL 
+				original:(NSString *)originalURL
+				   error:(NSError *)error
+{
+	if(error != nil)
+	{
+		//link shrinking has failed
+		NSLog(@"error %@", [error localizedDescription]);
+	}
+	else
+	{
+		//do something with your shrinked url
+	}	
+}
